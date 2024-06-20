@@ -12,7 +12,7 @@ import java.util.List;
 
 public class AlbumRepository {
 
-    private MutableLiveData<List<Album>> albumList;
+    private MutableLiveData<List<Album>> albumList = new MutableLiveData<>();
     private Application app;
 
     public AlbumRepository(Application app) {
