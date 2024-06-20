@@ -10,17 +10,19 @@ public class Album extends BaseObservable {
     String artist;
     String genre;
     String name;
+    String artUrl;
     int releaseYear;
     int stockQuantity;
 
     public Album() {
     }
 
-    public Album(long id, String artist, String genre, String name, int releaseYear, int stockQuantity) {
+    public Album(long id, String artist, String genre, String name, String artUrl, int releaseYear, int stockQuantity) {
         this.id = id;
         this.artist = artist;
         this.genre = genre;
         this.name = name;
+        this.artUrl = artUrl;
         this.releaseYear = releaseYear;
         this.stockQuantity = stockQuantity;
     }
@@ -43,6 +45,11 @@ public class Album extends BaseObservable {
     @Bindable
     public String getName() {
         return name;
+    }
+
+    @Bindable
+    public String getArtUrl() {
+        return artUrl;
     }
 
     @Bindable
@@ -73,6 +80,11 @@ public class Album extends BaseObservable {
     public void setName(String name) {
         this.name = name;
         notifyPropertyChanged(BR.name);
+    }
+
+    public void setArtUrl(String artUrl) {
+        this.artUrl = artUrl;
+        notifyPropertyChanged(BR.artUrl);
     }
 
     public void setReleaseYear(int releaseYear) {

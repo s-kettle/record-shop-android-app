@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         model.getData().observe(this, albumsFromData -> {
             albums = (ArrayList<Album>) albumsFromData;
             displayInRecyclerView();
-            System.out.println(albums.get(0).getArtist());
         });
     }
 

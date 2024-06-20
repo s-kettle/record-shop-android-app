@@ -2,10 +2,11 @@ package com.skettle.recordshopapp.ui.mainactivity;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 import com.skettle.recordshopapp.R;
 import com.skettle.recordshopapp.databinding.AlbumItemBinding;
 import com.skettle.recordshopapp.model.Album;
@@ -35,6 +36,10 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
         Album album = albumList.get(position);
         albumViewHolder.albumItemBinding.setAlbum(album);
+
+        Glide.with(context)
+                .load(album.getArtUrl())
+                .into(albumViewHolder.albumItemBinding.recordImage);
     }
 
     @Override
