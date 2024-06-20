@@ -20,4 +20,28 @@ public class Album {
         this.releaseYear = releaseYear;
         this.stockQuantity = stockQuantity;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getReleaseYear() {
+        return releaseYear;
+    }
+
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
 }
