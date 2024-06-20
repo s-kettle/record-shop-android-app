@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.skettle.recordshopapp.R;
 import com.skettle.recordshopapp.databinding.ActivityMainBinding;
 import com.skettle.recordshopapp.model.Album;
+import com.skettle.recordshopapp.utils.ItemSpaceDecorator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(albumAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        ItemSpaceDecorator decorator = new ItemSpaceDecorator(20);
+        recyclerView.addItemDecoration(decorator);
         recyclerView.hasFixedSize();
         albumAdapter.notifyDataSetChanged();
     }

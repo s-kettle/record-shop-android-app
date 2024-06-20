@@ -2,7 +2,8 @@
 
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@drawable/item_bg">
 
     <data>
         <variable
@@ -11,9 +12,11 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        
+
         <ImageView
                 android:id="@+id/recordImage"
                 android:layout_width="80dp"
@@ -35,7 +38,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@id/recordImage"
                 android:text="@{album.name}"
-                android:textSize="22sp" />
+                android:textSize="18sp" />
 
         <TextView
                 android:id="@+id/albumArtist"

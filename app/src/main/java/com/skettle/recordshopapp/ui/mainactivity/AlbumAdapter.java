@@ -7,6 +7,9 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.skettle.recordshopapp.R;
 import com.skettle.recordshopapp.databinding.AlbumItemBinding;
 import com.skettle.recordshopapp.model.Album;
@@ -37,8 +40,12 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
         Album album = albumList.get(position);
         albumViewHolder.albumItemBinding.setAlbum(album);
 
+        RequestOptions options = new RequestOptions()
+                .transform(new RoundedCorners(16));
+
         Glide.with(context)
                 .load(album.getArtUrl())
+                .apply(options)
                 .into(albumViewHolder.albumItemBinding.recordImage);
     }
 
