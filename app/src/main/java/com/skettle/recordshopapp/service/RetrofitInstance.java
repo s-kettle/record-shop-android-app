@@ -7,7 +7,7 @@ public class RetrofitInstance {
 
     private static Retrofit retrofit = null;
 
-    private static final String baseURL = "http://127.0.0.1:8080/api/v1/";
+    private static final String baseURL = "http://10.0.2.2:8080/api/v1/";
 
     public static AlbumApiService getService() {
         if (retrofit == null) {
