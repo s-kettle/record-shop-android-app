@@ -45,17 +45,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="7dp"
                 app:layout_constraintStart_toEndOf="@id/recordImage"
                 app:layout_constraintTop_toBottomOf="@id/albumName"
-                android:text="@{album.artist}"/>
+                android:text="@{album.artist}"
+                android:fontFamily="@font/akira"/>
 
         <TextView
                 android:id="@+id/albumGenre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="7dp"
                 app:layout_constraintStart_toEndOf="@id/recordImage"
                 app:layout_constraintTop_toBottomOf="@id/albumArtist"
                 android:text="@{album.genre}"/>
@@ -64,8 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="40dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="@id/albumGenre"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@{album.stockQuantity + ` in stock`}" />
 
