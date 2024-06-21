@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.addalbum.AddNewAlbumActivity"
+        android:background="@drawable/bg2">
+
+        <TextView
+                android:id="@+id/headerText"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:text="Add an album"
+                android:fontFamily="@font/akira"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+                android:id="@+id/albumNameInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Album name"
+                android:textColorHint="@color/grey"
+                android:text=""
+                android:textSize="18sp"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
+                android:paddingStart="15dp"
+                app:layout_constraintTop_toBottomOf="@id/headerText"
+                android:background="@drawable/item_bg" />
+
+        <EditText
+                android:id="@+id/albumArtistInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Album artist"
+                android:textColorHint="@color/grey"
+                android:text=""
+                android:textSize="18sp"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginTop="15dp"
+                android:paddingStart="15dp"
+                app:layout_constraintTop_toBottomOf="@id/albumNameInput"
+                android:background="@drawable/item_bg" />
+
+        <EditText
+                android:id="@+id/albumGenreInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Album genre"
+                android:textColorHint="@color/grey"
+                android:text=""
+                android:textSize="18sp"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginTop="15dp"
+                android:paddingStart="15dp"
+                app:layout_constraintTop_toBottomOf="@id/albumArtistInput"
+                android:background="@drawable/item_bg" />
+
+        <EditText
+                android:id="@+id/albumArtURLInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Album art URL"
+                android:textColorHint="@color/grey"
+                android:text=""
+                android:textSize="18sp"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginTop="15dp"
+                android:paddingStart="15dp"
+                app:layout_constraintTop_toBottomOf="@id/albumGenreInput"
+                android:background="@drawable/item_bg" />
+
+        <EditText
+                android:id="@+id/albumYearInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Album release year"
+                android:textColorHint="@color/grey"
+                android:text=""
+                android:textSize="18sp"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginTop="15dp"
+                android:paddingStart="15dp"
+                app:layout_constraintTop_toBottomOf="@id/albumArtURLInput"
+                android:background="@drawable/item_bg" />
+
+        <EditText
+                android:id="@+id/albumStockInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Album stock quantity"
+                android:textColorHint="@color/grey"
+                android:text=""
+                android:textSize="18sp"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginTop="15dp"
+                android:paddingStart="15dp"
+                app:layout_constraintTop_toBottomOf="@id/albumYearInput"
+                android:background="@drawable/item_bg" />
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                app:layout_constraintTop_toBottomOf="@id/albumStockInput"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="30dp"
+                android:text="Add Album"
+                android:backgroundTint="@color/blue"
+                android:textColor="@color/dkgrey"
+                android:textSize="14sp"
+                android:fontFamily="@font/akira" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="25dp"
+                android:layout_marginBottom="25dp"
+                android:src="@drawable/back"
+                android:backgroundTint="@color/white"
+                app:fabCustomSize="50dp"
+                />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
