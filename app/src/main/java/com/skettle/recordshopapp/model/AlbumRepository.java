@@ -1,6 +1,7 @@
 package com.skettle.recordshopapp.model;
 
 import android.app.Application;
+import android.widget.Toast;
 import androidx.lifecycle.MutableLiveData;
 import com.skettle.recordshopapp.service.AlbumApiService;
 import com.skettle.recordshopapp.service.RetrofitInstance;
@@ -35,5 +36,23 @@ public class AlbumRepository {
 
         });
         return albumList;
+    }
+
+    public void addMutableLiveData(Album album) {
+
+        AlbumApiService albumApiService = RetrofitInstance.getService();
+        Call<Album> call = albumApiService.createAlbum(album);
+
+        call.enqueue(new Callback<Album>() {
+            @Override
+            public void onResponse(Call<Album> call, Response<Album> response) {
+                Toast.makeText(app.getApplicationContext(), "Album added successfully.", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Album> call, Throwable throwable) {
+                Toast.makeText(app.getApplicationContext(), "Unable to add book.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
