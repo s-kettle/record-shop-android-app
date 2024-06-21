@@ -9,9 +9,10 @@
                 <variable
                         name="album"
                         type="com.skettle.recordshopapp.model.Album"/>
+                <variable
+                        name="clickHandler"
+                        type="com.skettle.recordshopapp.ui.addalbum.AddAlbumClickHandlers"/>
         </data>
-
-
 
 <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -128,6 +129,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="30dp"
+                android:onClick="@{clickHandler::submitButtonClicked}"
                 android:text="Add Album"
                 android:backgroundTint="@color/blue"
                 android:textColor="@color/dkgrey"
@@ -141,12 +143,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="25dp"
                 android:layout_marginBottom="25dp"
+                android:onClick="@{clickHandler::backButtonClicked}"
                 android:src="@drawable/back"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/blue"
                 app:fabCustomSize="50dp"
                 />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
