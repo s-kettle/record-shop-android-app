@@ -45,6 +45,8 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
         Glide.with(context)
                 .load(album.getArtUrl())
+                .placeholder(R.drawable.placeholder)
+                .fallback(R.drawable.record)
                 .apply(options)
                 .into(albumViewHolder.albumItemBinding.recordImage);
     }
