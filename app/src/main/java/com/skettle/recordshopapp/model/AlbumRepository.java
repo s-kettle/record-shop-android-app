@@ -1,6 +1,7 @@
 package com.skettle.recordshopapp.model;
 
 import android.app.Application;
+import android.util.Log;
 import android.widget.Toast;
 import androidx.lifecycle.MutableLiveData;
 import com.skettle.recordshopapp.service.AlbumApiService;
@@ -55,4 +56,40 @@ public class AlbumRepository {
             }
         });
     }
-}
+
+    public void updateAlbum(long id, Album album) {
+        AlbumApiService albumApiService = RetrofitInstance.getService();
+        Call<Album> call = albumApiService.updateAlbum(id, album);
+
+        call.enqueue(new Callback<Album>() {
+            @Override
+            public void onResponse(Call<Album> call, Response<Album> response) {
+                Toast.makeText(app.getApplicationContext(), "Album successfully updated", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Album> call, Throwable throwable) {
+                Toast.makeText(app.getApplicationContext(), "Unable to update album", Toast.LENGTH_SHORT).show();
+                Log.e("UPDATE ALBUM", throwable.getMessage());
+            }
+        });
+    }
+
+    public void deleteAlbum(long id) {
+        AlbumApiService albumApiService = RetrofitInstance.getService();
+        Call<String> call = albumApiService.deleteAlbum(id);
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Toast.makeText(app.getApplicationContext(), "Album deleted successfully", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable throwable) {
+                Toast.makeText(app.getApplicationContext(), "Unable to delete album", Toast.LENGTH_SHORT).show();
+                Log.e("DELETE ALBUM", throwable.getMessage());
+            }
+        });
+    }
+ }

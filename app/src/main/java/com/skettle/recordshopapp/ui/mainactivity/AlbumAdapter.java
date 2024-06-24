@@ -2,6 +2,7 @@ package com.skettle.recordshopapp.ui.mainactivity;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
@@ -21,17 +22,20 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
     List<Album> albumList;
     Context context;
+    RecyclerViewInterface recyclerViewInterface;
 
-    public AlbumAdapter(List<Album> albumList, Context context) {
+    public AlbumAdapter(List<Album> albumList, Context context, RecyclerViewInterface rvi) {
         this.albumList = albumList;
         this.context = context;
+        this.recyclerViewInterface = rvi;
     }
 
     @NonNull
     @NotNull
     @Override
     public AlbumViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup viewGroup, int i) {
-        return new AlbumViewHolder(AlbumItemBinding.inflate(LayoutInflater.from(viewGroup.getContext()), viewGroup, false));
+        AlbumItemBinding binding = AlbumItemBinding.inflate(LayoutInflater.from(viewGroup.getContext()), viewGroup, false);
+        return new AlbumViewHolder(binding, recyclerViewInterface);
     }
 
     @Override
@@ -60,9 +64,18 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
         AlbumItemBinding albumItemBinding;
 
-        public AlbumViewHolder(AlbumItemBinding albumItemBinding) {
+        public AlbumViewHolder(AlbumItemBinding albumItemBinding, RecyclerViewInterface recyclerViewInterface) {
             super(albumItemBinding.getRoot());
             this.albumItemBinding = albumItemBinding;
+
+            itemView.setOnClickListener(v -> {
+                if (recyclerViewInterface != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        recyclerViewInterface.onItemClick(position);
+                    }
+                }
+            });
         }
     }
 }

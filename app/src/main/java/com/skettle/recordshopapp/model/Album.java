@@ -1,5 +1,8 @@
 package com.skettle.recordshopapp.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import androidx.annotation.NonNull;
 import android.widget.TextView;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -7,7 +10,7 @@ import androidx.databinding.BindingAdapter;
 import androidx.databinding.InverseBindingAdapter;
 import com.skettle.recordshopapp.BR;
 
-public class Album extends BaseObservable {
+public class Album extends BaseObservable implements Parcelable {
 
     long id;
     String artist;
@@ -29,6 +32,28 @@ public class Album extends BaseObservable {
         this.releaseYear = releaseYear;
         this.stockQuantity = stockQuantity;
     }
+
+    protected Album(Parcel in) {
+        id = in.readLong();
+        artist = in.readString();
+        genre = in.readString();
+        name = in.readString();
+        artUrl = in.readString();
+        releaseYear = in.readInt();
+        stockQuantity = in.readInt();
+    }
+
+    public static final Creator<Album> CREATOR = new Creator<Album>() {
+        @Override
+        public Album createFromParcel(Parcel in) {
+            return new Album(in);
+        }
+
+        @Override
+        public Album[] newArray(int size) {
+            return new Album[size];
+        }
+    };
 
     @Bindable
     public long getId() {
@@ -112,5 +137,21 @@ public class Album extends BaseObservable {
     @InverseBindingAdapter(attribute = "android:text")
     public static int getText(TextView view) {
         return Integer.parseInt(view.getText().toString());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(artist);
+        dest.writeString(genre);
+        dest.writeString(name);
+        dest.writeString(artUrl);
+        dest.writeInt(releaseYear);
+        dest.writeInt(stockQuantity);
     }
 }
