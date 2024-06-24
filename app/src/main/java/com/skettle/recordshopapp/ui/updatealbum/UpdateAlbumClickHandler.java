@@ -1,6 +1,8 @@
 package com.skettle.recordshopapp.ui.updatealbum;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
@@ -51,10 +53,18 @@ public class UpdateAlbumClickHandler {
     }
 
     public void deleteButtonClicked(View view) {
-        Intent intent = new Intent(context, MainActivity.class);
-        albumID = album.getId();
-        model.deleteAlbum(albumID);
-        context.startActivity(intent);
+
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+        alertBuilder.setTitle("Delete this album?")
+                .setMessage("This will delete " + album.getName() + " by " + album.getArtist() + " permanently.")
+                .setPositiveButton("Delete", (dialog, id) -> {
+                    Intent intent = new Intent(context, MainActivity.class);
+                    albumID = album.getId();
+                    model.deleteAlbum(albumID);
+                    context.startActivity(intent);
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> { });
+        alertBuilder.show();
     }
 
     public void backButtonClicked(View view) {
