@@ -3,8 +3,11 @@ package com.skettle.recordshopapp.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.NonNull;
+import android.widget.TextView;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
+import androidx.databinding.BindingAdapter;
+import androidx.databinding.InverseBindingAdapter;
 import com.skettle.recordshopapp.BR;
 
 public class Album extends BaseObservable implements Parcelable {
@@ -120,6 +123,20 @@ public class Album extends BaseObservable implements Parcelable {
     public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
         notifyPropertyChanged(BR.stockQuantity);
+    }
+
+    @BindingAdapter("android:text")
+    public static void setText(TextView view, int value) {
+        if (view.getText() != null
+                && ( !view.getText().toString().isEmpty() )
+                && Integer.parseInt(view.getText().toString()) != value) {
+            view.setText(Integer.toString(value));
+        }
+    }
+
+    @InverseBindingAdapter(attribute = "android:text")
+    public static int getText(TextView view) {
+        return Integer.parseInt(view.getText().toString());
     }
 
     @Override
