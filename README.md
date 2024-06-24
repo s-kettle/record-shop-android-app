@@ -18,16 +18,16 @@ and updating of albums. All must be presented in a modern, polished layout.
 ## Screenshots
 
 ### Main display with RecyclerView
-TBC
+<img src="readme-res/main.gif" width="250">
 
 ### Add new album
-![add_album_screenshot.png](readme-res%2Fadd_album_screenshot.png)
+<img src="readme-res/add_album_screenshot.png" width="250">
 
 ### Update / delete album
-![update_screenshot.png](readme-res%2Fupdate_screenshot.png)
+<img src="readme-res/update_screenshot.png" width="250">
 
 ### Deletion warning
-![delete_warning_screenshot.png](readme-res%2Fdelete_warning_screenshot.png)
+<img src="readme-res/delete_warning_screenshot.png" width="250">
 
 ### Filtering
 TBC
