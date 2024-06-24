@@ -57,5 +57,9 @@ public class UpdateAlbumClickHandler {
         context.startActivity(intent);
     }
 
+    public void backButtonClicked(View view) {
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
 
 }

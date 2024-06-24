@@ -11,7 +11,7 @@
                 type="com.skettle.recordshopapp.model.Album"/>
         <variable
                 name="clickHandler"
-                type="com.skettle.recordshopapp.ui.updatealbum.UpdateAlbumClickHandlers"/>
+                type="com.skettle.recordshopapp.ui.updatealbum.UpdateAlbumClickHandler"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
