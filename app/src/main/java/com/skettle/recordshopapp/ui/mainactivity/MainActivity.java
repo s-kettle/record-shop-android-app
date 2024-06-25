@@ -101,6 +101,18 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         ArrayList<Album> filteredList = new ArrayList<>();
         for (Album album : albums) {
             switch (spinnerSelection) {
+                case "All": {
+                    if (album.getArtist().toLowerCase().contains(s.toLowerCase()) ||
+                            album.getName().toLowerCase().contains(s.toLowerCase()) ||
+                            album.getGenre().toLowerCase().contains(s.toLowerCase()) ||
+                            String.valueOf(album.getReleaseYear()).equals(s) ||
+                            String.valueOf(album.getStockQuantity()).equals(s))
+                    {
+                        if (!filteredList.contains(album)) {
+                            filteredList.add(album);
+                        }
+                    }
+                }
                 case "Artist": {
                     if (album.getArtist().toLowerCase().contains(s.toLowerCase())) {
                         if (!filteredList.contains(album)) {
