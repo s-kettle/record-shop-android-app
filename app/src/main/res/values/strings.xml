@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Record Shop App</string>
+    <string-array name="filter_items">
+        <item>Artist</item>
+        <item>Album name</item>
+        <item>Genre</item>
+    </string-array>
 </resources>

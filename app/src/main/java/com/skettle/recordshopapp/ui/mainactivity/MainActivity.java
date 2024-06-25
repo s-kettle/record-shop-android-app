@@ -1,8 +1,10 @@
 package com.skettle.recordshopapp.ui.mainactivity;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.SearchView;
@@ -20,7 +22,7 @@ import com.skettle.recordshopapp.utils.ItemSpaceDecorator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface, AdapterView.OnItemSelectedListener {
 
     RecyclerView recyclerView;
     ArrayList<Album> albums;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     ActivityMainBinding binding;
     MainActivityClickHandler handler;
     SearchView searchView;
+    Spinner spinner;
+    String spinnerSelection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,13 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         handler = new MainActivityClickHandler(this);
         binding.setClickHandler(handler);
+
+        spinner = findViewById(R.id.dropdown);
+        spinner.setOnItemSelectedListener(this);
+        String[] dropItems = getResources().getStringArray(R.array.filter_items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dropItems);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
         
         searchView = findViewById(R.id.filterInput);
         searchView.clearFocus();
@@ -89,8 +100,28 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     private void filterList(String s) {
         ArrayList<Album> filteredList = new ArrayList<>();
         for (Album album : albums) {
-            if (album.getName().toLowerCase().contains(s.toLowerCase())) {
-                filteredList.add(album);
+            switch (spinnerSelection) {
+                case "Artist": {
+                    if (album.getArtist().toLowerCase().contains(s.toLowerCase())) {
+                        if (!filteredList.contains(album)) {
+                            filteredList.add(album);
+                        }
+                    }
+                }
+                case "Album name": {
+                    if (album.getName().toLowerCase().contains(s.toLowerCase())) {
+                        if (!filteredList.contains(album)) {
+                            filteredList.add(album);
+                        }
+                    }
+                }
+                case "Genre": {
+                    if (album.getGenre().toLowerCase().contains(s.toLowerCase())) {
+                        if (!filteredList.contains(album)) {
+                            filteredList.add(album);
+                        }
+                    }
+                }
             }
         }
         if (filteredList.isEmpty()) {
@@ -98,5 +129,15 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         } else {
             albumAdapter.setFilteredList(filteredList);
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        this.spinnerSelection = parent.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
