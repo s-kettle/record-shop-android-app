@@ -2,8 +2,10 @@ package com.skettle.recordshopapp.ui.mainactivity;
 
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     MainActivityViewModel model;
     ActivityMainBinding binding;
     MainActivityClickHandler handler;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,22 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         handler = new MainActivityClickHandler(this);
         binding.setClickHandler(handler);
+        
+        searchView = findViewById(R.id.filterInput);
+        searchView.clearFocus();
+        
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filterList(s);
+                return true;
+            }
+        });
 
         getAllAlbums();
     }
@@ -65,5 +84,19 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         Intent intent = new Intent(MainActivity.this, UpdateAlbumActivity.class);
         intent.putExtra("ALBUM_KEY", albums.get(position));
         startActivity(intent);
+    }
+    
+    private void filterList(String s) {
+        ArrayList<Album> filteredList = new ArrayList<>();
+        for (Album album : albums) {
+            if (album.getName().toLowerCase().contains(s.toLowerCase())) {
+                filteredList.add(album);
+            }
+        }
+        if (filteredList.isEmpty()) {
+            Toast.makeText(this, "No albums found", Toast.LENGTH_SHORT).show();
+        } else {
+            albumAdapter.setFilteredList(filteredList);
+        }
     }
 }

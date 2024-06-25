@@ -16,6 +16,7 @@ import com.skettle.recordshopapp.databinding.AlbumItemBinding;
 import com.skettle.recordshopapp.model.Album;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
@@ -58,6 +59,11 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
     @Override
     public int getItemCount() {
         return albumList.size();
+    }
+
+    public void setFilteredList(ArrayList<Album> filteredList) {
+        this.albumList = filteredList;
+        notifyDataSetChanged();
     }
 
     public static class AlbumViewHolder extends RecyclerView.ViewHolder {
